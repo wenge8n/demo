@@ -11,20 +11,21 @@ import { ApiService } from '../../core/services/api.service';
 })
 export class StatusComponent implements OnInit {
   status = STATUS;
-  devices: Device[];
+  devices: Device[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private apiService: ApiService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const status = +this.route.snapshot.paramMap.get('status');
-    this.apiService.getDevices().subscribe((devices) => {
-      this.devices = devices.filter((device) => {
-        return device.status === status;
-      });
+    this.apiService.post('/getDevices', { status: status }).subscribe((res: any) => {
+      console.log(res)
+      if (res.success) {
+        this.devices = res.data;
+      }
     });
   }
 

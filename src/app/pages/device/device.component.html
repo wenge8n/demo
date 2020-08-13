@@ -9,11 +9,11 @@
   </thead>
   <tbody>
     <tr>
-      <th>{{ device.id }}</th>
-      <td>{{ device.name }}</td>
-      <td>{{ device.vendor }}</td>
-      <td [ngStyle]="{ color: getColor(device.status) }">
-        {{ status[device.status] }}
+      <th>{{ device?.id }}</th>
+      <td>{{ device?.name }}</td>
+      <td>{{ device?.vendor }}</td>
+      <td [ngStyle]="{ color: getColor(device?.status) }">
+        {{ status[device?.status] }}
       </td>
     </tr>
   </tbody>

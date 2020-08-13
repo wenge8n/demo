@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
-import { Device, DEVICES } from '../../models/device.model';
+import { Device } from '../../models/device.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  devices: Array<Device>; // should implement i.e NgRx
+  baseURL = "http://localhost:3001/api"
 
-  constructor() {}
+  constructor(public http: HttpClient) { }
 
-  getDevices(): Observable<Device[]> {
-    return of(DEVICES);
+  get(url) {
+    let apiURL = this.baseURL + url;
+
+    return this.http.get(apiURL);
+  }
+
+  post(url, param) {
+    let apiURL = this.baseURL + url;
+
+    return this.http.post(apiURL, param);
   }
 }

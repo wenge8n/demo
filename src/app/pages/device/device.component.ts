@@ -18,14 +18,15 @@ export class DeviceComponent implements OnInit {
   status = STATUS;
   device: Device;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
     let deviceId = +this.route.snapshot.paramMap.get('deviceId');
-    this.apiService.getDevices().subscribe((devices) => {
-      this.device = devices.filter((device) => {
-        return device.id === deviceId;
-      })[0];
+    this.apiService.post('/getDevices', { deviceId }).subscribe((res: any) => {
+      console.log(res)
+      if (res.success) {
+        this.device = res.data;
+      }
     });
   }
 
