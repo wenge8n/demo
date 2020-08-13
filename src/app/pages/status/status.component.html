@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Device Name</th>
+      <th>Vendor</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let device of devices; let i = index"
+      (click)="navigateToDevice(device.id)"
+    >
+      <th>{{ device.id }}</th>
+      <td>{{ device.name }}</td>
+      <td>{{ device.vendor }}</td>
+      <td [ngStyle]="{ color: getColor(device.status) }">
+        {{ status[device.status] }}
+      </td>
+    </tr>
+  </tbody>
+</table>

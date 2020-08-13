@@ -1,0 +1,22 @@
+<h1>Overview</h1>
+
+<div class="header">
+  <div class="states">
+    <div
+      *ngFor="let state of status; index as i"
+      [ngStyle]="{ color: getColor(i) }"
+    >
+      {{ counts[i] }} {{ state }}
+    </div>
+  </div>
+  <div class="total-count">{{ totalCount }}</div>
+</div>
+
+<!-- Chart bar -->
+<div class="chart-bar">
+  <div
+    *ngFor="let state of status; index as i"
+    [ngStyle]="{ width: getWidth(i), 'background-color': getColor(i) }"
+    (click)="navigateToStatus(i)"
+  ></div>
+</div>
